@@ -52,3 +52,16 @@ Every form submission MUST have:
 ## Hooks
 
 - `wcasia_event_submitted` (action) — Fires after a new event is successfully created. Parameters: `$post_id`, `$data`.
+
+## Documentation
+
+To maintain context limits, this project uses progressive disclosure for detailed documentation. If your task requires specific details beyond these core rules, please read the relevant markdown files in the `docs/` directory:
+
+- `docs/project-overview.md` — Core concepts, features, and workflow rules.
+- `docs/architecture-overview.md` — System design and file structure.
+- `docs/installation.md` — Prerequisites and installation instructions.
+- `docs/usage.md` — Explains how to use the plugin via shortcode and UI.
+- `docs/development-workflow.md` — Environment setup and rigorous coding standards.
+- `docs/testing.md` — Manual and security test requirements.
+- `docs/deployment.md` — Release structure and deployment options.
+- `docs/contributing.md` — Rules for contributions and critical security guidance.
