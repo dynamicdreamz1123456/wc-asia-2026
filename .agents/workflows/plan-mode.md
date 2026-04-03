@@ -27,4 +27,4 @@ This process will generate a single document file directly in the `./.agents/pla
 
 ## Phase 3: Ask user for approval
 - Ask the user any open questions you have, pointing them to the new/updated `[task-name].md` plan (do not re-summarize it).
-- If the user requests changes, make them. Otherwise, the workflow is complete.
+- If the user requests changes to the plan, make them. Otherwise, **STOP** do not execute the plan by default.
