@@ -1,4 +1,4 @@
-# WCasia Event Submissions — Project Rules
+# WordCamp Asia Event Submissions — Project Rules
 
 ## What This Plugin Does
 
