@@ -30,7 +30,7 @@ The **Daily AI Digest** workflow demonstrates **Scheduled tasks** (cron): it run
 
 **What it does:**
 
-1. Checks out the repo and runs `scripts/daily-digest.sh`.
+1. Checks out the repo and runs `.github/scripts/daily-digest.sh`.
 2. Uses the GitHub CLI to list open PRs and open issues as JSON.
 3. If `ANTHROPIC_API_KEY` is set, sends the data plus `.github/prompts/daily-digest.md` to the Anthropic API and writes an AI digest. Otherwise it writes a short **fallback** list (no API call).
 4. Appends the digest to the **workflow run’s job summary** (visible on the Actions run page).
@@ -105,15 +105,16 @@ To customize:
 ├── workflows/
 │   ├── pr-summary.yml      ← Workflow definition (when to run, how to run)
 │   ├── pr-review.yml       ← Workflow definition
-│   └── daily-digest.yml    ← Scheduled digest (cron + manual)
+│   ├── daily-digest.yml    ← Scheduled digest (cron + manual)
+│   └── README.md           ← This file
 ├── prompts/
 │   ├── pr-summary.md       ← Prompt template (what the AI should do)
 │   ├── pr-review.md        ← Prompt template
 │   └── daily-digest.md     ← Prompt for scheduled digest
-└── workflows/README.md     ← This file
+└── scripts/
+    └── daily-digest.sh     ← Invoked by daily-digest.yml
 
-scripts/                    ← repository root (invoked by daily-digest.yml)
-├── daily-digest.sh
+scripts/                    ← repository root (workshop helper only)
 └── create-workshop-digest-issues.sh
 ```
 

@@ -28,6 +28,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run daily digest
-        run: bash scripts/daily-digest.sh
+        run: bash .github/scripts/daily-digest.sh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
