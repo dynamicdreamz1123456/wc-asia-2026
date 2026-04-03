@@ -52,6 +52,12 @@ Every form submission MUST have:
 
 - `wcasia_event_submitted` (action) — Fires after a new event is successfully created. Parameters: `$post_id`, `$data`.
 
+## WP-CLI Commands
+
+- We are using a globally installed `wp-env` environment
+- All WP-CLI commands must be run inside the Docker container
+- To run commands properly, prefix them with `wp-env run cli -- ` (e.g. `wp-env run cli -- wp post create --post_type=page --post_title='Submit Event' list-events`)
+
 ## Documentation
 
 To maintain context limits, this project uses progressive disclosure for detailed documentation. If your task requires specific details beyond these core rules, please read the relevant markdown files in the `docs/` directory:
