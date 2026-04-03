@@ -6,11 +6,31 @@ Learn how to integrate AI into your WordPress development workflow — from writ
 
 ---
 
-## What's Inside
+## Getting Started
 
-### [Presentation Deck](https://docs.google.com/presentation/d/1efxQ3AGAfDWvT0x27SGn3UynEkKUP7WspkxoLxwtHxY/edit?usp=sharing)
+### Install an AI Code Editor
+Download [AntiGravity](https://antigravity.google/download), we'll use this as our primary AI code editor in the workshop due to it being free, full-featured, and having generous free tier AI limits. You can also use [Cursor](https://cursor.com/download) as an alternative, or another AI code editor of your choice.
 
-The workshop slide deck on Google Slides. Covers all three pillars of AI-driven development: AI Input, AI Output, and AI Automation.
+### Clone the repository
+```bash
+git clone https://github.com/wpscholar/wc-asia-2026.git
+cd wc-asia-2026
+```
+
+### Setup Local WordPress
+For the purposes of this workshop, we'll use [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) to create a local WordPress instance. You don't necessarily have to have a local WordPress instance set up to follow along with the workshop, as the focus is on the AI workflows and not on the local WordPress setup itself.
+
+#### Using WP-Env
+- Install [Docker](https://www.docker.com/)
+- Install [Node.js](https://nodejs.org/) - includes NPM 
+- Install [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/) as a global package (`npm -g i @wordpress/env`)
+- From the root directory of the cloned repository, run `wp-env start` to start a local WordPress instance
+
+## Digging In
+
+### [Plugin](plugin/)
+
+A simple WordPress plugin — **Event Submissions** — that serves as the working example throughout the workshop. It registers a custom post type, provides a frontend submission form via shortcode, and handles form processing with proper WordPress security patterns.
 
 ### [Examples](examples/)
 
@@ -28,42 +48,11 @@ Nine concept guides with hands-on exercises, one for each topic in the workshop:
 | [08](examples/08-triggers/)            | Triggers            | Automate AI on PR and ticket events                        |
 | [09](examples/09-scheduled-tasks/)     | Scheduled Tasks     | Run recurring AI digests and health checks                 |
 
-### [Plugin](plugin/)
-
-A simple WordPress plugin — **Event Submissions** — that serves as the working example throughout the workshop. It registers a custom post type, provides a frontend submission form via shortcode, and handles form processing with proper WordPress security patterns.
-
 ### [GitHub Workflows](.github/workflows/)
 
 Working GitHub Actions that use AI to automatically summarize pull requests and review code. Fork this repo, add your API key, and they work out of the box.
 
----
-
-## Quick Start
-
-```bash
-git clone git@github.com:wpscholar/wc-asia-2026.git
-cd wc-asia-2026
-```
-
-Browse the [examples](examples/) folder, or start with the [deck](https://docs.google.com/presentation/d/1efxQ3AGAfDWvT0x27SGn3UynEkKUP7WspkxoLxwtHxY/edit?usp=sharing) for the full workshop flow.
-
-### Running the Plugin
-
-The easiest way to run the plugin is with [wp-env](https://developer.wordpress.org/block-editor/reference-guides/packages/packages-env/), which requires [Docker](https://www.docker.com/) and [Node.js](https://nodejs.org/):
-
-```bash
-npm -g install @wordpress/env
-wp-env start
-wp-env run cli -- wp post create --post_type=page --post_title='Submit Event' --post_content='<!-- wp:shortcode -->[event_submission_form]<!--/wp:shortcode -->' --post_status='publish' --post_author=1
-```
-
-This spins up a local WordPress instance at `http://localhost:8888` with the plugin already activated. The `.wp-env.json` file handles the configuration.
-
-Alternatively, copy the `plugin/` folder into your existing WordPress `wp-content/plugins/` directory and activate it from the admin.
-
----
-
-## Using the AI Workflows
+#### Using the AI Workflows
 
 To activate the AI-powered GitHub Actions on your own fork:
 
