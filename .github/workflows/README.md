@@ -2,6 +2,8 @@
 
 This repository includes GitHub Actions workflows that use AI to automatically summarize and review pull requests. They demonstrate the **Triggers** concept from the workshop — AI that responds to events in your development lifecycle.
 
+The **Daily AI Digest** workflow demonstrates **Scheduled tasks** (cron): it runs on a schedule, gathers open PRs and issues, optionally summarizes them with Anthropic, and delivers the result to the **Actions job summary**, a **GitHub Discussion**, and optionally **Slack**.
+
 ---
 
 ## Workflows
@@ -21,6 +23,28 @@ This repository includes GitHub Actions workflows that use AI to automatically s
 - Why (inferred purpose)
 - Risks (security, breaking changes, performance)
 - Testing suggestions
+
+### Daily AI Digest (`daily-digest.yml`)
+
+**Triggers on:** Cron (weekdays, 01:00 UTC) and manual **Run workflow** (`workflow_dispatch`).
+
+**What it does:**
+
+1. Checks out the repo and runs `.github/scripts/daily-digest.sh`.
+2. Uses the GitHub CLI to list open PRs and open issues as JSON.
+3. If `ANTHROPIC_API_KEY` is set, sends the data plus `.github/prompts/daily-digest.md` to the Anthropic API and writes an AI digest. Otherwise it writes a short **fallback** list (no API call).
+4. Appends the digest to the **workflow run’s job summary** (visible on the Actions run page).
+5. Creates a new **Discussion** in the **General** category (or the first available category) with title `Daily digest — YYYY-MM-DD`.
+6. If `SLACK_WEBHOOK_URL` is set, POSTs the digest text to Slack (truncated if very long).
+
+**Repository setup:**
+
+1. **Enable Discussions:** Repository **Settings → General → Features → Discussions** (create a **General** category if prompted).
+2. **Secrets (Settings → Secrets and variables → Actions):**
+   - `ANTHROPIC_API_KEY` — optional but recommended; same key as the PR workflows. Without it, the digest is a simple markdown list.
+   - `SLACK_WEBHOOK_URL` — optional. Create an [Incoming Webhook](https://api.slack.com/messaging/webhooks) in your Slack app (free workspaces can use this; you only need the webhook URL, not a bot token). Paste the full webhook URL as the secret value—**do not commit it.**
+
+**Workshop demo issues:** run `./scripts/create-workshop-digest-issues.sh` locally (requires `gh`) to open labeled enhancement issues that show up in the digest.
 
 ### PR Code Review (`pr-review.yml`)
 
@@ -80,11 +104,18 @@ To customize:
 .github/
 ├── workflows/
 │   ├── pr-summary.yml      ← Workflow definition (when to run, how to run)
-│   └── pr-review.yml       ← Workflow definition
+│   ├── pr-review.yml       ← Workflow definition
+│   ├── daily-digest.yml    ← Scheduled digest (cron + manual)
+│   └── README.md           ← This file
 ├── prompts/
 │   ├── pr-summary.md       ← Prompt template (what the AI should do)
-│   └── pr-review.md        ← Prompt template
-└── README.md               ← This file
+│   ├── pr-review.md        ← Prompt template
+│   └── daily-digest.md     ← Prompt for scheduled digest
+└── scripts/
+    └── daily-digest.sh     ← Invoked by daily-digest.yml
+
+scripts/                    ← repository root (workshop helper only)
+└── create-workshop-digest-issues.sh
 ```
 
 The separation of workflows and prompts is intentional. Workflows define the *mechanics* (trigger, data collection, API call, posting). Prompts define the *intelligence* (what to check, how to report). This lets anyone improve the AI's output by editing a markdown file.

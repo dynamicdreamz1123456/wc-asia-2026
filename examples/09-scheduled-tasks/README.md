@@ -81,6 +81,8 @@ Every scheduled workflow should include `workflow_dispatch` so you can trigger i
 
 This lets you test and iterate on the prompt without waiting for the cron schedule to fire.
 
+**Reference implementation in this repo:** see `.github/workflows/daily-digest.yml`, `.github/scripts/daily-digest.sh`, and [`.github/workflows/README.md`](../../.github/workflows/README.md) for setup (Discussions, Slack webhook, Anthropic key).
+
 ---
 
 ## Exercise
