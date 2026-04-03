@@ -17,15 +17,14 @@ A WordPress plugin that lets visitors submit community events through a frontend
 - `plugin/includes/class-submission-handler.php` — Handles frontend form validation and processing.
 - `plugin/templates/submission-form.php` — Frontend form template rendered via `[event_submission_form]` shortcode.
 
-## Coding Standards
+## AntiGravity Rules
 
-Follow the WordPress Coding Standards:
+To create a workspace rule that AntiGravity can follow:
+1. Create a markdown file ending in `.md` inside the `.agents/rules/` directory (e.g., `.agents/rules/wordpress-coding-standards.md`).
+2. Include a basic YAML frontmatter block with a `description` field at the top of the file.
+3. Write out the rules in standard markdown format.
 
-- Use tabs for indentation, not spaces.
-- Prefix all functions, classes, and hooks with `wcasia_`.
-- Use Yoda conditions: `if ( 'value' === $variable )`.
-- Always use strict comparisons (`===`, `!==`).
-- Brace style: opening brace on the same line, closing brace on its own line.
+AntiGravity will automatically locate and adhere to these rules when working on relevant tasks within your project.
 
 ## Security Rules (Critical)
 
