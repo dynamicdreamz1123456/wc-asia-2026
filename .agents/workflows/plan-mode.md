@@ -1,5 +1,5 @@
 ---
-description: Invoke the rigorous planning mode workflow explicitly before taking action
+description: Invoke the rigorous planning mode workflow
 ---
 
 # Planning Mode Workflow
@@ -17,7 +17,14 @@ This process will generate a single document file directly in the `./.agents/pla
 - Create a single regular `[task-name].md` file directly in the `./.agents/plans/` directory with your findings and proposed approach.
 - Group files by component and order logically in your proposed changes, detailing [NEW], [MODIFY], and [DELETE] actions for files.
 - Include any open questions that require user feedback using GitHub alerts (like `> [!IMPORTANT]`).
+- A good plan includes:
+  - Problem statement
+  - Assumptions
+  - Architecture/approach
+  - Step-by-step execution plan
+  - Success criteria
 
-## Phase 3: Obtain User Approval
+
+## Phase 3: Ask user for approval
 - Ask the user any open questions you have, pointing them to the new/updated `[task-name].md` plan (do not re-summarize it).
-- **STOP** and wait for the user's explicit approval. Your workflow ends here (no execution or verification steps).
+- If the user requests changes, make them. Otherwise, the workflow is complete.
