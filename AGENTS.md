@@ -55,6 +55,8 @@ Every form submission MUST have:
 ## WP-CLI Commands
 
 - We are using a globally installed `wp-env` environment
+- Do NOT use `./wp-env` under any circumstances
+- Do NOT use `npx wp-env`
 - All WP-CLI commands must be run inside the Docker container
 - To run commands properly, prefix them with `wp-env run cli -- ` (e.g. `wp-env run cli -- wp post create --post_type=page --post_title='Submit Event' list-events`)
 
