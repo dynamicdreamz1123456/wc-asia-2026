@@ -5,6 +5,9 @@
 Learn how to integrate AI into your WordPress development workflow — from writing better prompts, to planning and building features with AI agents, to automating code reviews and release notes with CI/CD pipelines.
 
 ---
+## AI Test
+
+This is a test change to verify AI workflow is working.
 
 ## Getting Started
 
